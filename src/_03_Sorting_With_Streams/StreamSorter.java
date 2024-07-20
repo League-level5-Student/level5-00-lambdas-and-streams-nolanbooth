@@ -4,9 +4,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
@@ -21,11 +23,40 @@ import org.junit.jupiter.api.Test;
 public class StreamSorter {
 
     int[] sortArray(int[] arr) {
-        return null;
+      
+//    	System.out.println("Before sorting:");
+//    	
+//    	Arrays.stream(arr).forEach((integer)-> System.out.println(integer));
+//    	
+//    	System.out.println("After sorting:");
+//    	
+//    	Arrays.stream(arr).sorted().forEach((noah)-> System.out.println(noah));
+    	
+    	
+    	return Arrays.stream(arr).sorted().toArray();
     }
 
     List<String> sortList(List<String> list) {
-        return null;
+        System.out.println();
+    	System.out.println("Before sorting");
+    	list.stream().forEach((word) -> System.out.println(word));
+    	
+    	
+    	Stream<String> noah = list.stream().sorted((letter1, letter2)-> letter1.compareTo(letter2));
+    	
+    	
+    	System.out.println();
+    	System.out.println("After sorting:");
+    	
+    	//noah.parallel().forEach((letter) -> System.out.println(letter));
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	return noah.collect(Collectors.toList());
     }
     
     // =================== DO NOT MODIFY THE CODE BELOW ======================

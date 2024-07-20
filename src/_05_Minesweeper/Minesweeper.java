@@ -37,7 +37,7 @@ public class Minesweeper extends PApplet {
     boolean gameInProgress = false;
     int gameTimeSec;
     int nowMs;
-
+    boolean allCorrect = false;
     /*
      * Game settings
      */
@@ -63,7 +63,11 @@ public class Minesweeper extends PApplet {
      * *Note* This can be done using a for loop, but try to do it with Streams.
      */
     void revealAllCells() {
-        
+       cells.stream().forEach((cell)-> cell.revealed = true);
+    	// cell marked as revealed?
+       
+    	
+    	
     }
     
     /*
@@ -75,8 +79,38 @@ public class Minesweeper extends PApplet {
      *  count()     // returns how many items are in the stream
      *  noneMatch() // returns true if no items in the stream match the condition
      */
+    
+    
+    
+    
     boolean checkWin() {
-        return false;
+    	
+    
+    	
+//    	cells.stream().forEach((cell) -> {
+//        
+//        	
+//        	if(cell.mine == false && cell.flagged == true) {
+//        	allCorrect = false;
+//        }else if(cell.mine == true && cell.flagged == false) {
+//        	allCorrect = false;
+//        }
+//        	// if all-Correct is never set to false, then we know that all the cells are correct
+//        	
+//        	
+//        	
+//        });
+    	
+    	int numberOfRevealedNonMineCells = (int) cells.stream().filter((cell)-> cell.mine == false && cell.revealed == true).count();
+    	
+    	if(numberOfRevealedNonMineCells == cells.size() - numOfMines) {
+    		allCorrect = true;
+    	}else {
+    		allCorrect = false;
+    	}
+    	
+    	
+    	return allCorrect;
     }
     
     /*
@@ -97,6 +131,9 @@ public class Minesweeper extends PApplet {
      */
     void revealCell(Cell cell) {
         
+    	
+    	
+    	
     }
     
     /*

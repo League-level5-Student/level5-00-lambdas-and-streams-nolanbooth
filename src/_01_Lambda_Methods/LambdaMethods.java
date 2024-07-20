@@ -2,8 +2,6 @@ package _01_Lambda_Methods;
 
 import java.util.ArrayList;
 
-import org.junit.jupiter.params.shadow.com.univocity.parsers.common.input.ElasticCharAppender;
-
 public class LambdaMethods {
 	public static void main(String[] args) {
 		// 1. Look at the SpecialPrinter function interface.
