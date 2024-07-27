@@ -2,6 +2,7 @@ package _05_Minesweeper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import processing.core.PApplet;
 
@@ -118,7 +119,14 @@ public class Minesweeper extends PApplet {
 	void revealCell(Cell cell) {
 		cells.stream().filter((cell1) -> cell1 == cell && cell1.mine != true).forEach((cell2) -> {
 		cell2.revealed = true;	
-		getNeighbors(cell2).stream().forEach((cell3) -> cell3.revealed = true);
+		getNeighbors(cell2).stream().forEach((cell3) -> {
+		if(cell3.mine != true && cell3.minesAround == 0 && cell3.revealed != true) {
+			
+			revealCell(cell3);
+			
+		}
+			
+		});
 		//don't understand what the last instruction is saying
 			
 		});
@@ -136,7 +144,14 @@ public class Minesweeper extends PApplet {
 	 */
 	void setNumberOfSurroundingMines() {
 
-		cells.stream().forEach((cell)-> getNeighbors(cell).stream().filter((cell1)-> cell1.mine == true).mapToInt(cell2 -> 1).sum());
+	cells.stream().forEach((cell)-> {
+		
+		
+	 cell.minesAround = (int) getNeighbors(cell).stream().filter((cell1)-> cell1.mine == true).count();
+	
+	
+	
+	});
 		//no idea what this thing does
 		
 	}
